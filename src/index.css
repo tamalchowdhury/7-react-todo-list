@@ -281,6 +281,15 @@ body {
     row-gap: 20px;
   }
 
+  .todo__input {
+    padding-block: 10px;
+  }
+  
+  .btn {
+    padding: 15px 10px;
+    font-size: 14px;
+  }
+
   .main__header {
     position: initial;
     background: none;

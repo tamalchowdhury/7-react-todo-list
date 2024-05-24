@@ -2,6 +2,11 @@ import { nanoid } from "nanoid"
 import { useEffect, useRef, useState } from "react"
 import { createThousandTodos } from "./lib/util"
 import { initialItems } from "./lib/data"
+import TodoContextComponent from "./contexts/TodoContext"
+import Header from "./components/Header"
+import Footer from "./components/Footer"
+import Sidebar from "./components/Sidebar"
+import Main from "./components/Main"
 
 type TodoItem = {
   id: number
@@ -10,167 +15,14 @@ type TodoItem = {
 }
 
 function App() {
-  const [items, setItems] = useState<TodoItem[]>(
-    () => JSON.parse(localStorage.getItem("items")) || initialItems
-  )
-
-  const inputRef = useRef<HTMLInputElement>(null)
-
-  const listEmpty = items.length === 0
-  const todoCount = items.length
-  const itemsCompleted = items.filter((item) => item.completed).length
-
-  useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(items))
-  }, [items])
-
-  const handleAddItem = (item: TodoItem) => {
-    setItems([...items, item])
-  }
-
-  const handleAddThousandTodos = () => {
-    const todoItems = createThousandTodos()
-    setItems(todoItems)
-  }
-
-  const handleToggleItem = (id: number) => {
-    const newItems = items.map((item) => {
-      if (item.id === id) {
-        return { ...item, completed: !item.completed }
-      }
-      return item
-    })
-    setItems(newItems)
-  }
-
-  const handleDeleteItem = (id: number) => {
-    const newItems = items.filter((item) => item.id !== id)
-    setItems(newItems)
-  }
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault()
-    const todo = e.target.todo.value
-    if (!todo) return
-
-    const todoItem = {
-      id: nanoid(),
-      title: todo,
-      completed: false,
-    }
-
-    handleAddItem(todoItem)
-    e.target.reset()
-  }
-
-  const deleteAllTodo = () => {
-    setItems([])
-  }
-
-  const resetAllTodo = () => {
-    setItems(initialItems)
-  }
-
-  const markAllComplete = () => {
-    const newItems = items.map((item) => ({ ...item, completed: true }))
-    setItems(newItems)
-  }
-
   return (
     <div className='app'>
-      <header className='header'>
-        <div className='logo'>Super Powered ToDo List</div>
-        <div className='count'>
-          {itemsCompleted} / {todoCount} Todo Items Completed
-        </div>
-      </header>
-
-      <main className='main'>
-        {listEmpty ? (
-          <div className='empty__div'>
-            <h2>No Todo Items</h2>
-            <p>
-              Start by{" "}
-              <a href='#' onClick={() => inputRef.current?.select()}>
-                adding one
-              </a>
-            </p>
-          </div>
-        ) : (
-          <>
-            <h2 className='main__header'>Your Todo Items</h2>
-            <ul className='todos'>
-              {items.map((item, index) => (
-                <li key={item.id} className='todo'>
-                  <div className='todo__labels'>
-                    <input
-                      className='todo__checkbox'
-                      type='checkbox'
-                      name={item.title}
-                      id={item.title}
-                      checked={item.completed}
-                      onChange={() => handleToggleItem(item.id)}
-                    />
-                    <label htmlFor={item.title}>{item.title}</label>{" "}
-                  </div>
-                  <button
-                    className='todo__cross'
-                    onClick={() => handleDeleteItem(item.id)}
-                  >
-                    &times;
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-      </main>
-
-      <aside className='sidebar'>
-        <form className='add__todo__block' onSubmit={handleFormSubmit}>
-          <label className='add__todo__title' htmlFor='todo'>
-            Add Todo Item
-          </label>
-          <input
-            ref={inputRef}
-            className='todo__input'
-            name='todo'
-            placeholder='Pack bags..'
-            required
-          />
-          <button className='btn todo__button' type='submit'>
-            Add Todo
-          </button>
-        </form>
-
-        <div className='button__group'>
-          <button className='btn' onClick={resetAllTodo} type='button'>
-            Reset All Todos
-          </button>
-          <button className='btn' onClick={deleteAllTodo} type='button'>
-            Delete All Todos
-          </button>
-          <button className='btn' onClick={markAllComplete} type='button'>
-            Mark all Complete
-          </button>
-          <button
-            className='btn'
-            onClick={handleAddThousandTodos}
-            type='button'
-          >
-            Load 100 Sample Todos
-          </button>
-        </div>
-      </aside>
-
-      <footer className='footer'>
-        <div>
-          Super Powered ToDo List by{" "}
-          <a href='https://tamalchowdhury.com' target='_blank'>
-            Tamal Chowdhury
-          </a>
-        </div>
-      </footer>
+      <TodoContextComponent>
+        <Header />
+        <Main />
+        <Sidebar />
+        <Footer />
+      </TodoContextComponent>
     </div>
   )
 }
