@@ -70,7 +70,7 @@ function App() {
 
   return (
     <div className='app'>
-      <header className='header'>ToDo List</header>
+      <header className='header'>My ToDo List</header>
 
       <main className='main'>
         <h2>todo list items</h2>
