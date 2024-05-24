@@ -17,6 +17,8 @@ function App() {
     () => JSON.parse(localStorage.getItem("items")) || initialItems
   )
 
+  const listEmpty = items.length === 0
+
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items))
   }, [items])
@@ -73,29 +75,39 @@ function App() {
       <header className='header'>My ToDo List</header>
 
       <main className='main'>
-        <ul className='todos'>
-          {items.map((item, index) => (
-            <li key={item.id} className='todo'>
-              <div className='todo__labels'>
-                <input
-                  className='todo__checkbox'
-                  type='checkbox'
-                  name={item.title}
-                  id={item.title}
-                  checked={item.completed}
-                  onChange={() => handleToggleItem(item.id)}
-                />
-                <label htmlFor={item.title}>{item.title}</label>{" "}
-              </div>
-              <button
-                className='todo__cross'
-                onClick={() => handleDeleteItem(item.id)}
-              >
-                &times;
-              </button>
-            </li>
-          ))}
-        </ul>
+        {listEmpty ? (
+          <div className='empty__div'>
+            <h2>No Todo Items</h2>
+            <p>Start by adding one</p>
+          </div>
+        ) : (
+          <>
+            <h2 className='main__header'>Your Todo Items</h2>
+            <ul className='todos'>
+              {items.map((item, index) => (
+                <li key={item.id} className='todo'>
+                  <div className='todo__labels'>
+                    <input
+                      className='todo__checkbox'
+                      type='checkbox'
+                      name={item.title}
+                      id={item.title}
+                      checked={item.completed}
+                      onChange={() => handleToggleItem(item.id)}
+                    />
+                    <label htmlFor={item.title}>{item.title}</label>{" "}
+                  </div>
+                  <button
+                    className='todo__cross'
+                    onClick={() => handleDeleteItem(item.id)}
+                  >
+                    &times;
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </main>
 
       <aside className='sidebar'>

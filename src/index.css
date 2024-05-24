@@ -64,6 +64,14 @@ body {
   grid-row: 2 / 3;
 }
 
+.empty__div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 .main__header {
   padding: 10px;
 }
