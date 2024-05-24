@@ -148,7 +148,14 @@ function App() {
         </div>
       </aside>
 
-      <footer className='footer'>Super Powered ToDo List</footer>
+      <footer className='footer'>
+        <div>
+          Super Powered ToDo List by{" "}
+          <a href='https://tamalchowdhury.com' target='_blank'>
+            Tamal Chowdhury
+          </a>
+        </div>
+      </footer>
     </div>
   )
 }
