@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 const initialItems = [
   { id: 1716479885471, title: "make bed", completed: false },
   { id: 1716479885472, title: "eat breakfast", completed: false },
@@ -16,6 +16,8 @@ function App() {
   const [items, setItems] = useState<TodoItem[]>(
     () => JSON.parse(localStorage.getItem("items")) || initialItems
   )
+
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const listEmpty = items.length === 0
 
@@ -78,7 +80,12 @@ function App() {
         {listEmpty ? (
           <div className='empty__div'>
             <h2>No Todo Items</h2>
-            <p>Start by adding one</p>
+            <p>
+              Start by{" "}
+              <a href='#' onClick={() => inputRef.current?.select()}>
+                adding one
+              </a>
+            </p>
           </div>
         ) : (
           <>
@@ -115,7 +122,7 @@ function App() {
           <label className='add__todo__title' htmlFor='todo'>
             Add Todo Item
           </label>
-          <input className='todo__input' name='todo' required />
+          <input ref={inputRef} className='todo__input' name='todo' required />
           <button className='btn todo__button' type='submit'>
             Add Todo
           </button>
