@@ -150,14 +150,16 @@ body {
   display: grid;
   gap: 10px;
   margin-top: auto;
-
 }
 
 .btn {
   background: #d2649a;
   border-radius: 7px;
   padding: 7px 10px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
 }
 
 .todo__button {
@@ -165,7 +167,7 @@ body {
   border-radius: 7px;
   padding: 7px 10px;
   font-weight: bold;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 15px;
 }
 
 .btn:hover {

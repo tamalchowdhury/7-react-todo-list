@@ -111,10 +111,10 @@ function App() {
 
         <div className='button__group'>
           <button className='btn' onClick={resetAllTodo} type='button'>
-            Reset All Todo
+            Reset All Todos
           </button>
           <button className='btn' onClick={deleteAllTodo} type='button'>
-            Delete All Todo
+            Delete All Todos
           </button>
           <button className='btn' onClick={markAllComplete} type='button'>
             Mark all Complete
