@@ -73,40 +73,53 @@ function App() {
       <header className='header'>My ToDo List</header>
 
       <main className='main'>
-        <h2>todo list items</h2>
-        <ul>
+        <ul className='todos'>
           {items.map((item, index) => (
-            <li key={item.id}>
-              <input
-                type='checkbox'
-                name={item.title}
-                id={item.title}
-                checked={item.completed}
-                onChange={() => handleToggleItem(item.id)}
-              />
-              <label htmlFor={item.title}>{item.title}</label>{" "}
-              <button onClick={() => handleDeleteItem(item.id)}>x</button>
+            <li key={item.id} className='todo'>
+              <div className='todo__labels'>
+                <input
+                  className='todo__checkbox'
+                  type='checkbox'
+                  name={item.title}
+                  id={item.title}
+                  checked={item.completed}
+                  onChange={() => handleToggleItem(item.id)}
+                />
+                <label htmlFor={item.title}>{item.title}</label>{" "}
+              </div>
+              <button
+                className='todo__cross'
+                onClick={() => handleDeleteItem(item.id)}
+              >
+                &times;
+              </button>
             </li>
           ))}
         </ul>
       </main>
 
       <aside className='sidebar'>
-        <form onSubmit={handleFormSubmit}>
-          <label htmlFor='todo'>Add Todo Item</label>
-          <input name='todo' required />
-          <button type='submit'>Add Todo</button>
+        <form className='add__todo__block' onSubmit={handleFormSubmit}>
+          <label className='add__todo__title' htmlFor='todo'>
+            Add Todo Item
+          </label>
+          <input className='todo__input' name='todo' required />
+          <button className='btn todo__button' type='submit'>
+            Add Todo
+          </button>
         </form>
 
-        <button onClick={resetAllTodo} type='button'>
-          Reset All Todo
-        </button>
-        <button onClick={deleteAllTodo} type='button'>
-          Delete All Todo
-        </button>
-        <button onClick={markAllComplete} type='button'>
-          Mark all Complete
-        </button>
+        <div className='button__group'>
+          <button className='btn' onClick={resetAllTodo} type='button'>
+            Reset All Todo
+          </button>
+          <button className='btn' onClick={deleteAllTodo} type='button'>
+            Delete All Todo
+          </button>
+          <button className='btn' onClick={markAllComplete} type='button'>
+            Mark all Complete
+          </button>
+        </div>
       </aside>
 
       <footer className='footer'>Footer goes here</footer>
