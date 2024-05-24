@@ -1,10 +1,7 @@
 import { nanoid } from "nanoid"
 import { useEffect, useRef, useState } from "react"
-const initialItems = [
-  { id: 1716479885471, title: "make bed", completed: false },
-  { id: 1716479885472, title: "eat breakfast", completed: false },
-  { id: 1716479885473, title: "start coding", completed: false },
-]
+import { createThousandTodos } from "./lib/util"
+import { initialItems } from "./lib/data"
 
 type TodoItem = {
   id: number
@@ -29,6 +26,11 @@ function App() {
 
   const handleAddItem = (item: TodoItem) => {
     setItems([...items, item])
+  }
+
+  const handleAddThousandTodos = () => {
+    const todoItems = createThousandTodos()
+    setItems(todoItems)
   }
 
   const handleToggleItem = (id: number) => {
@@ -129,7 +131,13 @@ function App() {
           <label className='add__todo__title' htmlFor='todo'>
             Add Todo Item
           </label>
-          <input ref={inputRef} className='todo__input' name='todo' required />
+          <input
+            ref={inputRef}
+            className='todo__input'
+            name='todo'
+            placeholder='Pack bags..'
+            required
+          />
           <button className='btn todo__button' type='submit'>
             Add Todo
           </button>
@@ -144,6 +152,13 @@ function App() {
           </button>
           <button className='btn' onClick={markAllComplete} type='button'>
             Mark all Complete
+          </button>
+          <button
+            className='btn'
+            onClick={handleAddThousandTodos}
+            type='button'
+          >
+            Load 100 Sample Todos
           </button>
         </div>
       </aside>
