@@ -14,7 +14,5 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
-    // ignore typescript checking on build
-    "@typescript-eslint/ban-ts-comment": "off",
   },
 }
