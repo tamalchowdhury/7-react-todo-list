@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react"
+import React, { createContext, useEffect, useRef, useState } from "react"
 import { initialItems } from "../lib/data"
 import { createThousandTodos } from "../lib/util"
 
@@ -58,6 +58,8 @@ export default function TodoContextComponent({ children }: Props) {
     setItems(newItems)
   }
 
+  const inputRef = useRef<HTMLInputElement>(null)
+
   return (
     <TodoContext.Provider
       value={{
@@ -72,6 +74,7 @@ export default function TodoContextComponent({ children }: Props) {
         markAllComplete,
         listEmpty,
         items,
+        inputRef,
       }}
     >
       {children}

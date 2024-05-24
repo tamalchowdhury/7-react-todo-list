@@ -10,9 +10,8 @@ export default function Sidebar() {
     deleteAllTodo,
     markAllComplete,
     handleAddThousandTodos,
+    inputRef,
   } = useTodoContext()
-
-  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleFormSubmit = (e) => {
     e.preventDefault()

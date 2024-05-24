@@ -1,8 +1,7 @@
-import { useContext } from "react"
-import { TodoContext } from "../contexts/TodoContext"
+import { useTodoContext } from "../hooks/hooks"
 
 export default function Header() {
-  const { todoCount, itemsCompleted } = useContext(TodoContext)
+  const { todoCount, itemsCompleted } = useTodoContext()
 
   return (
     <header className='header'>

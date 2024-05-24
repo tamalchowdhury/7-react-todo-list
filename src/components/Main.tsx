@@ -1,7 +1,7 @@
 import { useTodoContext } from "../hooks/hooks"
 
 export default function Main() {
-  const { handleToggleItem, handleDeleteItem, listEmpty, items } =
+  const { handleToggleItem, handleDeleteItem, listEmpty, items, inputRef } =
     useTodoContext()
 
   return (
