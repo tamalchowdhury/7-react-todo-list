@@ -20,6 +20,8 @@ function App() {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const listEmpty = items.length === 0
+  const todoCount = items.length
+  const itemsCompleted = items.filter((item) => item.completed).length
 
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items))
@@ -74,7 +76,12 @@ function App() {
 
   return (
     <div className='app'>
-      <header className='header'>My ToDo List</header>
+      <header className='header'>
+        <div className='logo'>Super Powered ToDo List</div>
+        <div className='count'>
+          {itemsCompleted} / {todoCount} Todo Items Completed
+        </div>
+      </header>
 
       <main className='main'>
         {listEmpty ? (
@@ -141,7 +148,7 @@ function App() {
         </div>
       </aside>
 
-      <footer className='footer'>Footer goes here</footer>
+      <footer className='footer'>Super Powered ToDo List</footer>
     </div>
   )
 }

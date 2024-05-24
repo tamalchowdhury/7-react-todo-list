@@ -26,6 +26,7 @@ input {
   border: none;
   outline: none;
   font: inherit;
+  accent-color: #d2649a;
 }
 
 body {
@@ -40,13 +41,13 @@ body {
 
 .app {
   width: 1000px;
-  height: 800px;
   background: #f0f1f2;
-  margin-top: 80px;
+  margin-top: 20px;
   border-radius: 7px;
   display: grid;
   grid-template-columns: 6fr 3fr;
-  grid-template-rows: 50px 1fr 30px;
+  grid-template-rows: 50px 600px 30px;
+  box-shadow: 0 50px 150px rgba(0, 0, 0, .5);
 }
 
 .header {
@@ -58,14 +59,28 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  font-weight: bold;
   border-top-right-radius: 7px;
   border-top-left-radius: 7px;
+}
+
+
+.logo {
+  font-weight: bold;
+}
+
+.count {
+  font-size: 13px;
 }
 
 .main {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
+  overflow: scroll;
+
+  /* scrollbar style */
+  scrollbar-width: thin;
+  scrollbar-color: #7469b6 #f0f1f2;
+  /* remove the horizontal scroll bar */
 }
 
 .empty__div {
@@ -190,7 +205,6 @@ body {
 .footer {
   grid-column: 1 / -1;
   grid-row: 3 / 4;
-  background: #333;
   color: rgba(255, 255, 255, 0.6);
   display: flex;
   justify-content: center;
@@ -198,14 +212,15 @@ body {
   border-bottom-right-radius: 7px;
   border-bottom-left-radius: 7px;
   font-size: 12px;
+  background: #333;
 }
 
 /* MEDIA QUERIES */
 
 @media (max-width: 1000px) {
   .app {
-    width: 90vw;
-    height: 100%;
+    width: calc(100vw - 20px);
+    height: calc(100vh - 25px);
     margin-top: 20px;
     margin-bottom: 20px;
   }
