@@ -1,12 +1,13 @@
 import React, { createContext, useEffect, useRef, useState } from "react"
 import { initialItems } from "../lib/data"
 import { createThousandTodos } from "../lib/util"
+import { TContext, TodoItem } from "../types/types"
 
 type Props = {
   children: React.ReactNode
 }
 
-export const TodoContext = createContext()
+export const TodoContext = createContext<TContext>()
 
 export default function TodoContextComponent({ children }: Props) {
   const [items, setItems] = useState(
@@ -22,13 +23,16 @@ export default function TodoContextComponent({ children }: Props) {
   }
 
   const markAllComplete = () => {
-    const newItems = items.map((item) => ({ ...item, completed: true }))
+    const newItems = items.map((item: TodoItem) => ({
+      ...item,
+      completed: true,
+    }))
     setItems(newItems)
   }
 
   const listEmpty = items.length === 0
   const todoCount = items.length
-  const itemsCompleted = items.filter((item) => item.completed).length
+  const itemsCompleted = items.filter((item: TodoItem) => item.completed).length
 
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items))
@@ -43,8 +47,8 @@ export default function TodoContextComponent({ children }: Props) {
     setItems(todoItems)
   }
 
-  const handleToggleItem = (id: number) => {
-    const newItems = items.map((item) => {
+  const handleToggleItem = (id: string) => {
+    const newItems = items.map((item: TodoItem) => {
       if (item.id === id) {
         return { ...item, completed: !item.completed }
       }
@@ -53,8 +57,8 @@ export default function TodoContextComponent({ children }: Props) {
     setItems(newItems)
   }
 
-  const handleDeleteItem = (id: number) => {
-    const newItems = items.filter((item) => item.id !== id)
+  const handleDeleteItem = (id: string) => {
+    const newItems = items.filter((item: TodoItem) => item.id !== id)
     setItems(newItems)
   }
 

@@ -1,5 +1,4 @@
 import { nanoid } from "nanoid"
-import { useRef } from "react"
 
 import { useTodoContext } from "../hooks/hooks"
 

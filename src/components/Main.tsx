@@ -20,7 +20,7 @@ export default function Main() {
         <>
           <h2 className='main__header'>Your Todo Items</h2>
           <ul className='todos'>
-            {items.map((item, index) => (
+            {items.map((item) => (
               <li key={item.id} className='todo'>
                 <div className='todo__labels'>
                   <input
