@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid"
 import { useEffect, useState } from "react"
 const initialItems = [
   { id: 1716479885471, title: "make bed", completed: false },
@@ -45,7 +46,7 @@ function App() {
     if (!todo) return
 
     const todoItem = {
-      id: Date.now(),
+      id: nanoid(),
       title: todo,
       completed: false,
     }
@@ -68,7 +69,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='app'>
       <header className='header'>ToDo List</header>
 
       <main className='main'>
