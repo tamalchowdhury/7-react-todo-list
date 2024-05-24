@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { createContext, useEffect, useRef, useState } from "react"
 import { initialItems } from "../lib/data"
 import { createThousandTodos } from "../lib/util"

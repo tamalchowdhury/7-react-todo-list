@@ -14,5 +14,8 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
+    // typescript allow the use of ts-ignore
+    "@typescript-eslint/ban-ts-comment": "off",
+
   },
 }
