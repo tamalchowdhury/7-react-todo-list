@@ -31,7 +31,12 @@ export default function Main() {
                     checked={item.completed}
                     onChange={() => handleToggleItem(item.id)}
                   />
-                  <label htmlFor={item.title}>{item.title}</label>{" "}
+                  <label
+                    className={item.completed ? "u-strike" : ""}
+                    htmlFor={item.title}
+                  >
+                    {item.title}
+                  </label>{" "}
                 </div>
                 <button
                   className='todo__cross'

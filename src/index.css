@@ -64,6 +64,12 @@ body {
     url("./img/bg.svg");
 }
 
+/* UTILITIES */
+
+.u-strike {
+  text-decoration: line-through;
+}
+
 .app {
   width: 1000px;
   background: #f0f1f2;
