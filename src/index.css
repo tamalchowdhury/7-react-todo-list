@@ -225,8 +225,8 @@ body {
   padding: 7px 10px;
   color: rgba(255, 255, 255, 0.9);
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 12px;
+  letter-spacing: 2px;
+  font-size: 13px;
   transition: all 0.3s;
 }
 
@@ -234,8 +234,8 @@ body {
   background: var(--accent-color);
   border-radius: 7px;
   padding: 7px 10px;
-  font-weight: bold;
   font-size: 15px;
+  font-weight: bold;
 }
 
 .btn:hover {
